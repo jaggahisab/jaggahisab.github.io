@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>नेपाली जग्गा रूपान्तरण, मूल्य, लोन, कमिसन तथा ब्याज क्यालकुलेटर | Nepal Land Converter & Real Estate Suite</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="नेपालको जग्गा नाप (रोपनी, आना, पैसा, दाम र बिघा, कट्ठा, धुर) रूपान्तरण, जग्गाको मूल्य, बैंक लोन EMI, एजेन्ट कमिसन र स्थानीय सयकडा ब्याज क्यालकुलेटर।">
+  <meta name="keywords" content="Nepal Land Converter, Ropani to Bigha, Aana to Dhur, 1 Ropani in Sq Ft, 1 Kattha in Sq Ft, नेपाली जग्गा नाप क्यालकुलेटर, जग्गाको मूल्य क्यालकुलेटर, EMI Calculator Nepal, Interest Calculator Nepal">
+  <meta name="author" content="Nepal Real Estate Tools">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="नेपाली जग्गा रूपान्तरण तथा वित्तीय क्यालकुलेटर (All-in-One Real Estate Suite)">
+  <meta property="og:description" content="पहाड र तराईको जग्गा एकाइ कन्भर्ट गर्नुहोस्, जग्गाको मूल्य, बैंक लोन EMI, एजेन्ट कमिसन र सयकडा ब्याज एकै ठाउँमा हिसाब गर्नुहोस्।">
+  <meta property="og:type" content="website">
+
+  <!-- Schema.org JSON-LD Structured Data for Google Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Nepali Land Converter & Financial Calculator",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "description": "Comprehensive Nepal Land Unit Converter (Ropani, Aana, Bigha, Kattha, Dhur) with Price, Loan EMI, Agent Commission and Interest Calculators."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "१ रोपनीमा कति आना र कति वर्ग फिट हुन्छ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "१ रोपनीमा १६ आना र ५,४७६ वर्ग फिट (Square Feet) हुन्छ।"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "१ कट्ठामा कति धुर र कति वर्ग फिट हुन्छ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "१ कट्ठामा २० धुर र ३,६४५ वर्ग फिट (Square Feet) हुन्छ।"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "४ धुरमा कति आना हुन्छ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "४ धुरमा लगभग २.१३ आना (२ आना, ० पैसा, २.०८ दाम) हुन्छ।"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "१० लाखको महिनाको २ सयकडाले ब्याज कति हुन्छ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "१० लाखको महिनाको २ सयकडा (२% मासिक) ले १ महिनाको ब्याज रु. २०,००० हुन्छ।"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --primary-color: #0d6efd;
+      --secondary-color: #198754;
+      --accent-color: #fd7e14;
+      --info-color: #0dcaf0;
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-color: #212529;
+      --border-color: #dee2e6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 20px 10px;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    h1 {
+      color: var(--primary-color);
+      font-size: 1.6rem;
+    }
+
+    .btn-reset {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    .btn-reset:hover {
+      background-color: #bb2d3b;
+    }
+
+    .subtitle {
+      color: #6c757d;
+      margin-bottom: 25px;
+      font-size: 0.95rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .section-card {
+      background: #f1f5f9;
+      padding: 18px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 20px;
+    }
+
+    .section-card h2 {
+      font-size: 1.15rem;
+      margin-bottom: 15px;
+      color: #333;
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 5px;
+    }
+
+    .input-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .input-box {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .input-box label {
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .input-box input, .input-box select {
+      padding: 9px 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 0.95rem;
+      outline: none;
+      background: white;
+      transition: border-color 0.2s;
+    }
+
+    .input-box input:focus, .input-box select:focus {
+      border-color: var(--primary-color);
+    }
+
+    .price-card {
+      background: #eef9f1;
+      border-color: #c3e6cb;
+    }
+    .price-card h2 {
+      color: var(--secondary-color);
+      border-color: var(--secondary-color);
+    }
+
+    .loan-card {
+      background: #fff8e6;
+      border-color: #ffeba8;
+    }
+    .loan-card h2 {
+      color: var(--accent-color);
+      border-color: var(--accent-color);
+    }
+
+    .interest-card {
+      background: #f0f8ff;
+      border-color: #b8daff;
+    }
+    .interest-card h2 {
+      color: #055160;
+      border-color: #055160;
+    }
+
+    .results-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      border: 2px dashed var(--primary-color);
+      margin-top: 15px;
+    }
+
+    .results-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      color: var(--primary-color);
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 0.95rem;
+    }
+
+    .result-row:last-child {
+      border-bottom: none;
+    }
+
+    .result-val {
+      font-weight: bold;
+    }
+
+    .price-highlight {
+      color: var(--secondary-color);
+      font-size: 1.15rem;
+    }
+
+    .loan-highlight {
+      color: var(--accent-color);
+      font-size: 1.1rem;
+    }
+
+    /* SEO Article & FAQs Style */
+    .seo-content {
+      margin-top: 40px;
+      border-top: 2px solid var(--border-color);
+      padding-top: 25px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.3rem;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .seo-content h3 {
+      font-size: 1.05rem;
+      color: var(--primary-color);
+      margin: 15px 0 8px;
+    }
+
+    .seo-content p, .seo-content ul {
+      font-size: 0.92rem;
+      color: #495057;
+      margin-bottom: 12px;
+    }
+
+    .faq-item {
+      background: #f8f9fa;
+      padding: 14px;
+      border-radius: 6px;
+      border-left: 4px solid var(--primary-color);
+      margin-bottom: 12px;
+    }
+
+    .faq-item h4 {
+      font-size: 0.98rem;
+      color: #212529;
+      margin-bottom: 5px;
+    }
+
+    .faq-item p {
+      margin-bottom: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 0.88rem;
+    }
+
+    table, th, td {
+      border: 1px solid #dee2e6;
+    }
+
+    th, td {
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #e9ecef;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header-bar">
+    <h1>नेपाली जग्गा रूपान्तरण, लोन तथा ब्याज क्यालकुलेटर</h1>
+    <button class="btn-reset" onclick="resetAllFields()">सबै हटाउनुहोस् (Clear All)</button>
+  </div>
+  <p class="subtitle">जग्गा एकाइ रूपान्तरण, कुल मूल्य, बैंक लोन EMI, एजेन्ट कमिसन र सयकडा ब्याज हिसाब गर्नुहोस्</p>
+
+  <!-- जग्गा रूपान्तरण सेक्सन -->
+  <div class="grid-2">
+    <!-- पहाडी प्रणाली -->
+    <div class="section-card">
+      <h2>पहाडी प्रणाली (Hilly System)</h2>
+      <div class="input-group">
+        <div class="input-box">
+          <label for="ropani">रोपनी</label>
+          <input type="number" id="ropani" min="0" placeholder="0" oninput="calculateFromHilly()">
+        </div>
+        <div class="input-box">
+          <label for="aana">आना</label>
+          <input type="number" id="aana" min="0" placeholder="0" oninput="calculateFromHilly()">
+        </div>
+        <div class="input-box">
+          <label for="paisa">पैसा</label>
+          <input type="number" id="paisa" min="0" placeholder="0" oninput="calculateFromHilly()">
+        </div>
+        <div class="input-box">
+          <label for="dam">दाम</label>
+          <input type="number" id="dam" min="0" placeholder="0" oninput="calculateFromHilly()">
+        </div>
+      </div>
+    </div>
+
+    <!-- तराई प्रणाली -->
+    <div class="section-card">
+      <h2>तराई प्रणाली (Terai System)</h2>
+      <div class="input-group" style="grid-template-columns: 1fr 1fr 1fr;">
+        <div class="input-box">
+          <label for="bigha">बिघा</label>
+          <input type="number" id="bigha" min="0" placeholder="0" oninput="calculateFromTerai()">
+        </div>
+        <div class="input-box">
+          <label for="kattha">कट्ठा</label>
+          <input type="number" id="kattha" min="0" placeholder="0" oninput="calculateFromTerai()">
+        </div>
+        <div class="input-box">
+          <label for="dhur">धुर</label>
+          <input type="number" id="dhur" min="0" placeholder="0" oninput="calculateFromTerai()">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- वर्ग फिट र मिटर -->
+  <div class="section-card" style="margin-top: -5px;">
+    <h2>मानक क्षेत्रफल (Standard Area)</h2>
+    <div class="input-group" style="grid-template-columns: 1fr 1fr;">
+      <div class="input-box">
+        <label for="sqft">वर्ग फिट (Square Feet)</label>
+        <input type="number" id="sqft" min="0" placeholder="0" oninput="calculateFromSqFt()">
+      </div>
+      <div class="input-box">
+        <label for="sqm">वर्ग मिटर (Square Meters)</label>
+        <input type="number" id="sqm" min="0" placeholder="0" oninput="calculateFromSqM()">
+      </div>
+    </div>
+  </div>
+
+  <!-- जग्गाको मूल्य तथा कमिसन -->
+  <div class="grid-2">
+    <div class="section-card price-card">
+      <h2>१. जग्गाको मूल्य क्यालकुलेटर</h2>
+      <div class="input-group" style="grid-template-columns: 1fr 1fr 1fr;">
+        <div class="input-box">
+          <label for="rateQuantity">जग्गा परिमाण:</label>
+          <input type="number" id="rateQuantity" placeholder="माथिको वा आफै लेख्नुस्" oninput="updateAll()">
+        </div>
+        <div class="input-box">
+          <label for="rate">दर (प्रति एकाइ मूल्य - रु):</label>
+          <input type="number" id="rate" placeholder="उदा: 2500000" oninput="updateAll()">
+        </div>
+        <div class="input-box">
+          <label for="rateUnit">मूल्य एकाइ छान्नुहोस्:</label>
+          <select id="rateUnit" onchange="updateAll()">
+            <option value="kattha">प्रति कट्ठा</option>
+            <option value="dhur">प्रति धुर</option>
+            <option value="bigha">प्रति बिघा</option>
+            <option value="ropani">प्रति रोपनी</option>
+            <option value="aana">प्रति आना</option>
+            <option value="sqft">प्रति वर्ग फिट</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card price-card">
+      <h2>२. एजेन्ट कमिसन (Commission %)</h2>
+      <div class="input-group" style="grid-template-columns: 1fr;">
+        <div class="input-box">
+          <label for="commissionRate">एजेन्ट कमिसन प्रतिशत (%):</label>
+          <input type="number" id="commissionRate" placeholder="उदा: 2" oninput="updateAll()">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- बैंक लोन तथा इएमआई -->
+  <div class="section-card loan-card">
+    <h2>३. बैंक लोन तथा मासिक किस्ता (Bank Loan & EMI Calculator)</h2>
+    <div class="input-group" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));">
+      <div class="input-box">
+        <label for="directLoanAmount">ऋण/लोन रकम (रु):</label>
+        <input type="number" id="directLoanAmount" placeholder="उदा: 5000000" oninput="calculateEMIDirectly()">
+      </div>
+      <div class="input-box">
+        <label for="loanPercent">वा बैंक फाइनान्सिङ (%):</label>
+        <input type="number" id="loanPercent" placeholder="उदा: 70" oninput="updateAll()">
+      </div>
+      <div class="input-box">
+        <label for="interestRate">वार्षिक ब्याजदर (%):</label>
+        <input type="number" id="interestRate" placeholder="उदा: 9.5" oninput="updateAll()">
+      </div>
+      <div class="input-box">
+        <label for="loanTenure">अवधि (वर्ष):</label>
+        <input type="number" id="loanTenure" placeholder="उदा: 10" oninput="updateAll()">
+      </div>
+    </div>
+  </div>
+
+  <!-- नेपाली साधारण तथा सयकडा ब्याज क्यालकुलेटर -->
+  <div class="section-card interest-card">
+    <h2>४. नेपाली साधारण तथा सयकडा ब्याज क्यालकुलेटर (Interest Calculator)</h2>
+    <div class="input-group" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));">
+      <div class="input-box">
+        <label for="principalAmount">सावाँ रकम (रु):</label>
+        <input type="number" id="principalAmount" placeholder="उदा: 1000000" oninput="calculateSimpleInterest()">
+      </div>
+      <div class="input-box">
+        <label for="interestType">ब्याज प्रकार:</label>
+        <select id="interestType" onchange="calculateSimpleInterest()">
+          <option value="sayakada">सयकडा (प्रति महां/मासिक %)</option>
+          <option value="yearly">वार्षिक (Yearly %)</option>
+        </select>
+      </div>
+      <div class="input-box">
+        <label for="customRate">ब्याजदर (% / सयकडा):</label>
+        <input type="number" id="customRate" placeholder="उदा: 2" oninput="calculateSimpleInterest()">
+      </div>
+      <div class="input-box">
+        <label for="timeMonths">समय (महिना):</label>
+        <input type="number" id="timeMonths" placeholder="उदा: 12" oninput="calculateSimpleInterest()">
+      </div>
+    </div>
+
+    <div class="results-card" style="margin-top: 10px; border-color: #055160;">
+      <div class="result-row">
+        <span>कुल ब्याज रकम:</span>
+        <span class="result-val" id="resInterestAmount">रु. ०</span>
+      </div>
+      <div class="result-row">
+        <span>कुल बुझाउनुपर्ने सावाँ-ब्याज रकम:</span>
+        <span class="result-val price-highlight" id="resTotalPayable">रु. ०</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- नतिजा समरी (Summary Dashboard) -->
+  <div class="results-card">
+    <h3>जग्गाको कुल हिसाब तथा वित्तीय विवरण (Summary Dashboard)</h3>
+    <div class="result-row">
+      <span>पहाडी एकाइ:</span>
+      <span class="result-val" id="resHilly">० रोपनी, ० आना, ० पैसा, ० दाम</span>
+    </div>
+    <div class="result-row">
+      <span>तराई एकाइ:</span>
+      <span class="result-val" id="resTerai">० बिघा, ० कट्ठा, ० धुर</span>
+    </div>
+    <div class="result-row">
+      <span>वर्ग फिट / वर्ग मिटर:</span>
+      <span class="result-val" id="resStandard">० Sq. Ft / ० Sq. M</span>
+    </div>
+    <div class="result-row">
+      <span>कुल जग्गाको मूल्य:</span>
+      <span class="result-val price-highlight" id="resTotalPrice">रु. ०</span>
+    </div>
+    <div class="result-row">
+      <span>एजेन्ट कमिसन रकम:</span>
+      <span class="result-val" id="resCommission">रु. ०</span>
+    </div>
+    <div class="result-row">
+      <span>डाउन पेमेन्ट रकम (नगद):</span>
+      <span class="result-val" id="resDownPayment">रु. ०</span>
+    </div>
+    <div class="result-row">
+      <span>बैंक लोन रकम:</span>
+      <span class="result-val" id="resLoanAmount">रु. ०</span>
+    </div>
+    <div class="result-row">
+      <span>अनुमानित मासिक किस्ता (EMI):</span>
+      <span class="result-val loan-highlight" id="resEMI">रु. ० / महिना</span>
+    </div>
+  </div>
+
+  <!-- SEO Articles & Quora Style FAQs -->
+  <div class="seo-content">
+    <h2>नेपालमा जग्गा नाप, मूल्य र वित्तीय हिसाब कसरी गरिन्छ?</h2>
+    <p>नेपालमा भौगोलिक सुगमता अनुसार दुई प्रकारका जग्गा नापप्रणालीहरू प्रयोग गरिन्छ। पहाड तथा काठमाडौँ उपत्यकामा <strong>रोपनी, आना, पैसा, दाम</strong> प्रयोग गरिन्छ भने तराई क्षेत्रमा <strong>बिघा, कट्ठा, धुर</strong> को प्रयोग गरिन्छ।</p>
+
+    <h3>१. नेपालका मानक जग्गा नाप तालिका (Standard Land Measurement Table)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>प्रणाली (System)</th>
+          <th>एकाइ (Unit)</th>
+          <th>बराबर वर्ग फिट (Sq. Feet)</th>
+          <th>बराबर वर्ग मिटर (Sq. Meters)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>पहाडी प्रणाली</td>
+          <td>१ रोपनी (१६ आना)</td>
+          <td>५,४७६ Sq. Ft</td>
+          <td>५०८.७४ Sq. M</td>
+        </tr>
+        <tr>
+          <td>पहाडी प्रणाली</td>
+          <td>१ आना (४ पैसा)</td>
+          <td>३४२.२५ Sq. Ft</td>
+          <td>३१.८० Sq. M</td>
+        </tr>
+        <tr>
+          <td>तराई प्रणाली</td>
+          <td>१ बिघा (२० कट्ठा)</td>
+          <td>७२,९०० Sq. Ft</td>
+          <td>६,७७२.६३ Sq. M</td>
+        </tr>
+        <tr>
+          <td>तराई प्रणाली</td>
+          <td>१ कट्ठा (२० धुर)</td>
+          <td>३,६४५ Sq. Ft</td>
+          <td>३३८.६३ Sq. M</td>
+        </tr>
+        <tr>
+          <td>तराई प्रणाली</td>
+          <td>१ धुर</td>
+          <td>१८२.२५ Sq. Ft</td>
+          <td>१६.९३ Sq. M</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>२. बारम्बार सोधिने प्रश्नहरू (Frequently Asked Questions - Quora Style)</h3>
+    
+    <div class="faq-item">
+      <h4>Q: ४ धुरमा कति आना हुन्छ?</h4>
+      <p><strong>जवाफ:</strong> १ धुर बराबर १८२.२५ वर्ग फिट र १ आना बराबर ३४२.२५ वर्ग फिट हुन्छ। ४ धुर भनेको कुल ७२९ वर्ग फिट हो, जसलाई आनामा रूपान्तरण गर्दा ठ्याक्कै <strong>२.१३ आना (२ आना, ० पैसा, २.०८ दाम)</strong> हुन्छ।</p>
+    </div>
+
+    <div class="faq-item">
+      <h4>Q: १० लाखको महिनाको २ सयकडाले ब्याज कति हुन्छ?</h4>
+      <p><strong>जवाफ:</strong> नेपालमा २ सयकडा भनेको प्रतिमहिना २% ब्याजदर हो। १० लाखको १ महिनाको ब्याज रु. २०,००० हुन्छ र १ वर्ष (१२ महिना) को कुल ब्याज रु. २,४०,००० हुन्छ।</p>
+    </div>
+
+    <div class="faq-item">
+      <h4>Q: १ बिघामा कति रोपनी हुन्छ?</h4>
+      <p><strong>जवाफ:</strong> १ बिघामा ७२,९०० वर्ग फिट र १ रोपनीमा ५,४७६ वर्ग फिट हुने भएकोले १ बिघा बराबर लगभग <strong>१३.३१ रोपनी (१३ रोपनी ५ आना १ पैसा २ दाम)</strong> हुन्छ।</p>
+    </div>
+
+    <div class="faq-item">
+      <h4>Q: बैंकले जग्गाको भ्यालुएसनमा कति प्रतिशतसम्म लोन दिन्छ?</h4>
+      <p><strong>जवाफ:</strong> नेपाल राष्ट्र बैंकको नियम अनुसार बैंकहरूले आवासीय घरजग्गाको सरकारी र बजार मुल्यांकन (Valuation) को आधारमा ६०% देखि ७०% सम्म लोन उपलब्ध गराउँछन्। बाँकी ३०% देखि ४०% रकम खरिदकर्ताले डाउन पेमेन्टको रूपमा बुझाउनुपर्छ।</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Standard Constants in Square Feet
+  const SQFT_DAM = 21.39;
+  const SQFT_PAISA = SQFT_DAM * 4;     // 85.56
+  const SQFT_AANA = SQFT_PAISA * 4;     // 342.25
+  const SQFT_ROPANI = SQFT_AANA * 16;   // 5476
+
+  const SQFT_DHUR = 182.25;
+  const SQFT_KATTHA = SQFT_DHUR * 20;   // 3645
+  const SQFT_BIGHA = SQFT_KATTHA * 20;  // 72900
+
+  const SQFT_PER_SQM = 10.7639;
+
+  let currentTotalSqFt = 0;
+
+  function calculateFromHilly() {
+    const r = parseFloat(document.getElementById('ropani').value) || 0;
+    const a = parseFloat(document.getElementById('aana').value) || 0;
+    const p = parseFloat(document.getElementById('paisa').value) || 0;
+    const d = parseFloat(document.getElementById('dam').value) || 0;
+
+    currentTotalSqFt = (r * SQFT_ROPANI) + (a * SQFT_AANA) + (p * SQFT_PAISA) + (d * SQFT_DAM);
+    updateOutputs('hilly');
+  }
+
+  function calculateFromTerai() {
+    const b = parseFloat(document.getElementById('bigha').value) || 0;
+    const k = parseFloat(document.getElementById('kattha').value) || 0;
+    const d = parseFloat(document.getElementById('dhur').value) || 0;
+
+    currentTotalSqFt = (b * SQFT_BIGHA) + (k * SQFT_KATTHA) + (d * SQFT_DHUR);
+    updateOutputs('terai');
+  }
+
+  function calculateFromSqFt() {
+    currentTotalSqFt = parseFloat(document.getElementById('sqft').value) || 0;
+    updateOutputs('sqft');
+  }
+
+  function calculateFromSqM() {
+    const sqm = parseFloat(document.getElementById('sqm').value) || 0;
+    currentTotalSqFt = sqm * SQFT_PER_SQM;
+    updateOutputs('sqm');
+  }
+
+  function calculateEMIDirectly() {
+    updateOutputs('directLoan');
+  }
+
+  function updateAll() {
+    updateOutputs('');
+  }
+
+  function updateOutputs(source) {
+    const sqft = currentTotalSqFt;
+
+    // 1. Update Hilly Inputs
+    let remSqftH = sqft;
+    const ropani = Math.floor(remSqftH / SQFT_ROPANI);
+    remSqftH %= SQFT_ROPANI;
+
+    const aana = Math.floor(remSqftH / SQFT_AANA);
+    remSqftH %= SQFT_AANA;
+
+    const paisa = Math.floor(remSqftH / SQFT_PAISA);
+    remSqftH %= SQFT_PAISA;
+
+    const dam = Math.round((remSqftH / SQFT_DAM) * 100) / 100;
+
+    if (source !== 'hilly') {
+      document.getElementById('ropani').value = ropani || '';
+      document.getElementById('aana').value = aana || '';
+      document.getElementById('paisa').value = paisa || '';
+      document.getElementById('dam').value = dam || '';
+    }
+
+    // 2. Update Terai Inputs
+    let remSqftT = sqft;
+    const bigha = Math.floor(remSqftT / SQFT_BIGHA);
+    remSqftT %= SQFT_BIGHA;
+
+    const kattha = Math.floor(remSqftT / SQFT_KATTHA);
+    remSqftT %= SQFT_KATTHA;
+
+    const dhur = Math.round((remSqftT / SQFT_DHUR) * 100) / 100;
+
+    if (source !== 'terai') {
+      document.getElementById('bigha').value = bigha || '';
+      document.getElementById('kattha').value = kattha || '';
+      document.getElementById('dhur').value = dhur || '';
+    }
+
+    // 3. Update Standard Inputs
+    if (source !== 'sqft') {
+      document.getElementById('sqft').value = Math.round(sqft * 100) / 100 || '';
+    }
+    if (source !== 'sqm') {
+      document.getElementById('sqm').value = Math.round((sqft / SQFT_PER_SQM) * 100) / 100 || '';
+    }
+
+    // 4. Calculate Land Price (Flexible Logic)
+    const rate = parseFloat(document.getElementById('rate').value) || 0;
+    const rateUnit = document.getElementById('rateUnit').value;
+    let customQty = parseFloat(document.getElementById('rateQuantity').value) || 0;
+    
+    let totalPrice = 0;
+
+    // If unit quantity is explicitly typed or calculated from main converter
+    if (rate > 0) {
+      if (customQty > 0) {
+        totalPrice = customQty * rate;
+      } else if (sqft > 0) {
+        let unitSqFt = 1;
+        let convertedQty = 0;
+        if (rateUnit === 'kattha') { unitSqFt = SQFT_KATTHA; convertedQty = sqft / SQFT_KATTHA; }
+        else if (rateUnit === 'dhur') { unitSqFt = SQFT_DHUR; convertedQty = sqft / SQFT_DHUR; }
+        else if (rateUnit === 'bigha') { unitSqFt = SQFT_BIGHA; convertedQty = sqft / SQFT_BIGHA; }
+        else if (rateUnit === 'ropani') { unitSqFt = SQFT_ROPANI; convertedQty = sqft / SQFT_ROPANI; }
+        else if (rateUnit === 'aana') { unitSqFt = SQFT_AANA; convertedQty = sqft / SQFT_AANA; }
+        else if (rateUnit === 'sqft') { unitSqFt = 1; convertedQty = sqft; }
+
+        document.getElementById('rateQuantity').value = Math.round(convertedQty * 100) / 100 || '';
+        totalPrice = (sqft / unitSqFt) * rate;
+      }
+    }
+
+    // 5. Calculate Agent Commission
+    const commRate = parseFloat(document.getElementById('commissionRate').value) || 0;
+    const commissionVal = (totalPrice * commRate) / 100;
+
+    // 6. Calculate Bank Loan & EMI
+    let loanAmt = parseFloat(document.getElementById('directLoanAmount').value) || 0;
+    const loanPct = parseFloat(document.getElementById('loanPercent').value) || 0;
+
+    if (source !== 'directLoan' && totalPrice > 0 && loanPct > 0) {
+      loanAmt = (totalPrice * loanPct) / 100;
+      document.getElementById('directLoanAmount').value = Math.round(loanAmt);
+    }
+
+    const downPaymentVal = totalPrice > loanAmt ? totalPrice - loanAmt : 0;
+
+    const annualInterest = parseFloat(document.getElementById('interestRate').value) || 0;
+    const tenureYears = parseFloat(document.getElementById('loanTenure').value) || 0;
+
+    let emi = 0;
+    if (loanAmt > 0 && annualInterest > 0 && tenureYears > 0) {
+      const monthlyRate = annualInterest / 12 / 100;
+      const months = tenureYears * 12;
+      emi = (loanAmt * monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+    }
+
+    // 7. Render Output Dashboard
+    document.getElementById('resHilly').innerText = `${ropani} रोपनी, ${aana} आना, ${paisa} पैसा, ${dam} दाम`;
+    document.getElementById('resTerai').innerText = `${bigha} बिघा, ${kattha} कट्ठा, ${dhur} धुर`;
+    document.getElementById('resStandard').innerText = `${(Math.round(sqft * 100) / 100).toLocaleString('ne-NP')} Sq. Ft / ${(Math.round((sqft / SQFT_PER_SQM) * 100) / 100).toLocaleString('ne-NP')} Sq. M`;
+    
+    document.getElementById('resTotalPrice').innerText = `रु. ${Math.round(totalPrice).toLocaleString('ne-NP')}`;
+    document.getElementById('resCommission').innerText = `रु. ${Math.round(commissionVal).toLocaleString('ne-NP')}${commRate ? ` (${commRate}%)` : ''}`;
+    document.getElementById('resDownPayment').innerText = `रु. ${Math.round(downPaymentVal).toLocaleString('ne-NP')}`;
+    document.getElementById('resLoanAmount').innerText = `रु. ${Math.round(loanAmt).toLocaleString('ne-NP')}`;
+    document.getElementById('resEMI').innerText = `रु. ${Math.round(emi).toLocaleString('ne-NP')} / महिना`;
+  }
+
+  // 8. Simple & Sayakada Interest Calculator Function
+  function calculateSimpleInterest() {
+    const p = parseFloat(document.getElementById('principalAmount').value) || 0;
+    const type = document.getElementById('interestType').value;
+    const r = parseFloat(document.getElementById('customRate').value) || 0;
+    const t = parseFloat(document.getElementById('timeMonths').value) || 0;
+
+    let interest = 0;
+
+    if (p > 0 && r > 0 && t > 0) {
+      if (type === 'sayakada') {
+        interest = p * (r / 100) * t;
+      } else {
+        interest = p * (r / 100) * (t / 12);
+      }
+    }
+
+    const totalPayable = p + interest;
+
+    document.getElementById('resInterestAmount').innerText = `रु. ${Math.round(interest).toLocaleString('ne-NP')}`;
+    document.getElementById('resTotalPayable').innerText = `रु. ${Math.round(totalPayable).toLocaleString('ne-NP')}`;
+  }
+
+  // Reset Function
+  function resetAllFields() {
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => input.value = '');
+    currentTotalSqFt = 0;
+    updateOutputs('');
+    calculateSimpleInterest();
+  }
+</script>
+
+</body>
+</html>
