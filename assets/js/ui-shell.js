@@ -96,3 +96,18 @@
   /* Initial paint */
   renderBar({ ropani: 0, aana: 0, paisa: 0, dam: 0, bigha: 0, kattha: 0, dhur: 0, sqft: 0 });
 })();
+/* Malpot sticky bar & inputs wiring */
+document.addEventListener('DOMContentLoaded', () => {
+  // Malpot inputs listener
+  document.querySelectorAll('[id^="malpot"]').forEach(el => {
+    const handler = () => {
+      if (typeof window.calculateMalpot === 'function') window.calculateMalpot();
+    };
+    el.addEventListener('input', handler);
+    el.addEventListener('change', handler);
+  });
+
+  if (document.getElementById('malpotPropertyValue') && typeof window.calculateMalpot === 'function') {
+    window.calculateMalpot();
+  }
+});
