@@ -1,11 +1,9 @@
 <section id="unified-converter" class="converter"
-         data-primary-unit="{{ page.primary_unit | default: 'aana' }}">
+        data-primary-unit="{{ page.primary_unit | default: 'aana' }}">
 
-  {%- if page.title -%}
   <div class="converter-head">
     <button class="btn-reset" type="button" onclick="resetAllFields()">सबै हटाउनुहोस्</button>
   </div>
-  {%- endif %}
 
   <!-- Bridge-First: both systems visible, no click required -->
   <div class="bridge">
@@ -31,12 +29,15 @@
     </fieldset>
   </div>
 
-  <!-- Tabs for secondary modules -->
+  <!-- Tabs -->
   <div class="tab-bar" role="tablist" data-default="{{ page.default_tab | default: 'converter' }}">
     <button role="tab" data-tab="converter" aria-selected="true">क्षेत्र रूपान्तरण</button>
     <button role="tab" data-tab="price"     aria-selected="false">मूल्य</button>
-    <button role="tab" data-tab="emi"       aria-selected="false">EMI</button>
-    <button role="tab" data-tab="interest"  aria-selected="false">सयकडा</button>
+    <button role="tab" data-tab="emi"        aria-selected="false">EMI</button>
+    <button role="tab" data-tab="interest"   aria-selected="false">सयकडा</button>
+    {%- if page.show_malpot -%}
+    <button role="tab" data-tab="malpot" aria-selected="false" aria-controls="panel-malpot" id="tab-malpot">मालपोत</button>
+    {%- endif -%}
   </div>
 
   <div role="tabpanel" data-panel="converter" class="tab-panel">
@@ -91,7 +92,102 @@
     </fieldset>
     <div class="result-line">कुल ब्याज: <strong id="resInterestAmount">रु. ०</strong></div>
     <div class="result-line">कुल तिर्नुपर्ने: <strong id="resTotalPayable">रु. ०</strong></div>
-  </div> {%- if page.show_malpot -%}
-<button role="tab" data-tab="malpot" aria-selected="false" aria-controls="panel-malpot" id="tab-malpot">मालपोत</button>
-{%- endif -%}
+  </div>
+
+  {%- if page.show_malpot -%}
+  <div role="tabpanel" data-panel="malpot" id="panel-malpot" class="tab-panel" hidden aria-labelledby="tab-malpot">
+
+    <div class="disclaimer disclaimer--inline" role="note">
+      <strong>⚠ अनुमानित हिसाब मात्र।</strong>
+      दर्ता दस्तुर र पूँजीगत लाभ कर आर्थिक ऐन २०८०/८१ मा आधारित। अन्तिम रकमको लागि सम्बन्धित <strong>मालपोत कार्यालय</strong> वा पछिल्लो आर्थिक ऐन हेर्नुहोस्। यो कानूनी सल्लाह होइन।
+    </div>
+
+    <fieldset class="panel">
+      <legend>जग्गाको विवरण</legend>
+
+      <label class="field" for="malpotPropertyValue">
+        <span class="field-label">जग्गाको कारोबार मूल्य (रु.) <abbr title="required" aria-label="आवश्यक">*</abbr></span>
+        <input
+          type="number"
+          id="malpotPropertyValue"
+          name="malpotPropertyValue"
+          min="0"
+          step="1000"
+          inputmode="decimal"
+          placeholder="उदा: 2500000"
+          aria-describedby="malpotValueHelp"
+          oninput="calculateMalpot()">
+        <small id="malpotValueHelp" class="field-help">सरकारी न्यूनतम मूल्याङ्कन वा कारोबार मूल्य — जुन बढी छ।</small>
+      </label>
+
+      <button type="button" class="btn-secondary" onclick="copyPriceFromTab()" aria-describedby="copyPriceHelp">
+        ↙ मूल्य ट्याबबाट तान्नुहोस्
+      </button>
+      <small id="copyPriceHelp" class="field-help">माथि “मूल्य” ट्याबमा हिसाब गरेको कुल मूल्य यहाँ स्वतः राख्छ।</small>
+
+      <label class="field" for="malpotLocation">
+        <span class="field-label">स्थानको प्रकार</span>
+        <select id="malpotLocation" name="malpotLocation" onchange="calculateMalpot()">
+          <option value="metropolitan">महानगरपालिका — ५%</option>
+          <option value="sub_metropolitan">उपमहानगरपालिका — ४%</option>
+          <option value="municipality">नगरपालिका — ४%</option>
+          <option value="rural">गाउँपालिका — ३%</option>
+          <option value="other">अन्य क्षेत्र — २%</option>
+        </select>
+      </label>
+    </fieldset>
+
+    <fieldset class="panel">
+      <legend>छुट र करका विकल्प</legend>
+
+      <label class="checkbox-row checkbox-row--highlight">
+        <input type="checkbox" id="malpotWomanBuyer" name="malpotWomanBuyer" onchange="calculateMalpot()">
+        <span class="checkbox-body">
+          <strong>खरिदकर्ता महिला हुनुहुन्छ</strong>
+          <small>दर्ता दस्तुरमा २५% छुट लागू हुन्छ (नेपाल सरकारको नीति)।</small>
+        </span>
+      </label>
+
+      <label class="checkbox-row">
+        <input type="checkbox" id="malpotIsHouse" name="malpotIsHouse" onchange="calculateMalpot()">
+        <span class="checkbox-body">
+          <strong>यो घर हो (जग्गा होइन)</strong>
+          <small>घरमा पूँजीगत लाभ कर कम हुन्छ (५% वा २.५%)।</small>
+        </span>
+      </label>
+
+      <label class="checkbox-row">
+        <input type="checkbox" id="malpotHoldingOver5" name="malpotHoldingOver5" onchange="calculateMalpot()">
+        <span class="checkbox-body">
+          <strong>विक्रेताले ५ वर्षभन्दा बढी राखेको छ</strong>
+          <small>५ वर्षभन्दा कम राखे कर दर बढी हुन्छ (जग्गामा १०%, घरमा ५%)।</small>
+        </span>
+      </label>
+    </fieldset>
+
+    <div class="results-card" aria-live="polite">
+      <div class="result-line">
+        <span>लागू दर्ता दस्तुर दर:</span>
+        <strong id="resMalpotRate">०%</strong>
+      </div>
+      <div class="result-line">
+        <span>मालपोत दर्ता दस्तुर:</span>
+        <strong id="resMalpotFee">रु. ०</strong>
+      </div>
+      <div class="result-line">
+        <span>पूँजीगत लाभ कर:</span>
+        <strong id="resMalpotCGT">रु. ०</strong>
+      </div>
+      <div class="result-line result-line--total">
+        <span>कुल लागत (दस्तुर + कर):</span>
+        <strong id="resMalpotTotal">रु. ०</strong>
+      </div>
+    </div>
+
+    <p class="field-help">
+      <strong>नोट:</strong> “खरिदकर्ता महिला” चुन्दा दस्तुरमा २५% छुट लागू हुन्छ — जस्तै महानगरपालिकामा ५% → ३.७५%। पूँजीगत लाभ करमा यो छुट लागू हुँदैन।
+    </p>
+
+  </div>
+  {%- endif -%}
 </section>
