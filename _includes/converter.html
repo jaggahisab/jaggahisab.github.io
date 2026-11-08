@@ -1,11 +1,10 @@
 <section id="unified-converter" class="converter"
-        data-primary-unit="{{ page.primary_unit | default: 'aana' }}">
+         data-primary-unit="{{ page.primary_unit | default: 'aana' }}">
 
   <div class="converter-head">
     <button class="btn-reset" type="button" onclick="resetAllFields()">सबै हटाउनुहोस्</button>
   </div>
 
-  <!-- Bridge-First: both systems visible, no click required -->
   <div class="bridge">
     <fieldset class="panel panel-hilly">
       <legend>पहाडी प्रणाली</legend>
@@ -29,7 +28,6 @@
     </fieldset>
   </div>
 
-  <!-- Tabs -->
   <div class="tab-bar" role="tablist" data-default="{{ page.default_tab | default: 'converter' }}">
     <button role="tab" data-tab="converter" aria-selected="true">क्षेत्र रूपान्तरण</button>
     <button role="tab" data-tab="price"     aria-selected="false">मूल्य</button>
