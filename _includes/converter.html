@@ -1,0 +1,95 @@
+<section id="unified-converter" class="converter"
+         data-primary-unit="{{ page.primary_unit | default: 'aana' }}">
+
+  {%- if page.title -%}
+  <div class="converter-head">
+    <button class="btn-reset" type="button" onclick="resetAllFields()">सबै हटाउनुहोस्</button>
+  </div>
+  {%- endif %}
+
+  <!-- Bridge-First: both systems visible, no click required -->
+  <div class="bridge">
+    <fieldset class="panel panel-hilly">
+      <legend>पहाडी प्रणाली</legend>
+      <label>रोपनी<input type="number" id="ropani" min="0" inputmode="decimal" oninput="calculateFromHilly()"></label>
+      <label>आना<input type="number" id="aana" min="0" inputmode="decimal" oninput="calculateFromHilly()"></label>
+      <label>पैसा<input type="number" id="paisa" min="0" inputmode="decimal" oninput="calculateFromHilly()"></label>
+      <label>दाम<input type="number" id="dam" min="0" inputmode="decimal" oninput="calculateFromHilly()"></label>
+    </fieldset>
+
+    <fieldset class="panel panel-terai">
+      <legend>तराई प्रणाली</legend>
+      <label>बिघा<input type="number" id="bigha" min="0" inputmode="decimal" oninput="calculateFromTerai()"></label>
+      <label>कट्ठा<input type="number" id="kattha" min="0" inputmode="decimal" oninput="calculateFromTerai()"></label>
+      <label>धुर<input type="number" id="dhur" min="0" inputmode="decimal" oninput="calculateFromTerai()"></label>
+    </fieldset>
+
+    <fieldset class="panel panel-std">
+      <legend>मानक क्षेत्रफल</legend>
+      <label>वर्ग फिट<input type="number" id="sqft" min="0" inputmode="decimal" oninput="calculateFromSqFt()"></label>
+      <label>वर्ग मिटर<input type="number" id="sqm" min="0" inputmode="decimal" oninput="calculateFromSqM()"></label>
+    </fieldset>
+  </div>
+
+  <!-- Tabs for secondary modules -->
+  <div class="tab-bar" role="tablist" data-default="{{ page.default_tab | default: 'converter' }}">
+    <button role="tab" data-tab="converter" aria-selected="true">क्षेत्र रूपान्तरण</button>
+    <button role="tab" data-tab="price"     aria-selected="false">मूल्य</button>
+    <button role="tab" data-tab="emi"       aria-selected="false">EMI</button>
+    <button role="tab" data-tab="interest"  aria-selected="false">सयकडा</button>
+  </div>
+
+  <div role="tabpanel" data-panel="converter" class="tab-panel">
+    <div id="resHilly"    class="result-line">० रोपनी, ० आना, ० पैसा, ० दाम</div>
+    <div id="resTerai"    class="result-line">० बिघा, ० कट्ठा, ० धुर</div>
+    <div id="resStandard" class="result-line">० Sq. Ft / ० Sq. M</div>
+  </div>
+
+  <div role="tabpanel" data-panel="price" class="tab-panel" hidden>
+    <fieldset class="panel">
+      <label>जग्गा परिमाण<input type="number" id="rateQuantity" inputmode="decimal" oninput="updateAll()"></label>
+      <label>दर (रु / एकाइ)<input type="number" id="rate" inputmode="decimal" oninput="updateAll()"></label>
+      <label>मूल्य एकाइ
+        <select id="rateUnit" onchange="updateAll()">
+          <option value="kattha">प्रति कट्ठा</option>
+          <option value="dhur">प्रति धुर</option>
+          <option value="bigha">प्रति बिघा</option>
+          <option value="ropani">प्रति रोपनी</option>
+          <option value="aana">प्रति आना</option>
+          <option value="sqft">प्रति वर्ग फिट</option>
+        </select>
+      </label>
+      <label>कमिसन (%)<input type="number" id="commissionRate" inputmode="decimal" oninput="updateAll()"></label>
+    </fieldset>
+    <div class="result-line">कुल मूल्य: <strong id="resTotalPrice">रु. ०</strong></div>
+    <div class="result-line">कमिसन: <strong id="resCommission">रु. ०</strong></div>
+  </div>
+
+  <div role="tabpanel" data-panel="emi" class="tab-panel" hidden>
+    <fieldset class="panel">
+      <label>लोन रकम (रु)<input type="number" id="directLoanAmount" inputmode="decimal" oninput="calculateEMIDirectly()"></label>
+      <label>वा फाइनान्सिङ (%)<input type="number" id="loanPercent" inputmode="decimal" oninput="updateAll()"></label>
+      <label>वार्षिक ब्याज (%)<input type="number" id="interestRate" inputmode="decimal" oninput="updateAll()"></label>
+      <label>अवधि (वर्ष)<input type="number" id="loanTenure" inputmode="decimal" oninput="updateAll()"></label>
+    </fieldset>
+    <div class="result-line">डाउन पेमेन्ट: <strong id="resDownPayment">रु. ०</strong></div>
+    <div class="result-line">लोन रकम: <strong id="resLoanAmount">रु. ०</strong></div>
+    <div class="result-line">मासिक किस्ता: <strong id="resEMI">रु. ० / महिना</strong></div>
+  </div>
+
+  <div role="tabpanel" data-panel="interest" class="tab-panel" hidden>
+    <fieldset class="panel">
+      <label>सावाँ (रु)<input type="number" id="principalAmount" inputmode="decimal" oninput="calculateSimpleInterest()"></label>
+      <label>ब्याज प्रकार
+        <select id="interestType" onchange="calculateSimpleInterest()">
+          <option value="sayakada">सयकडा (मासिक %)</option>
+          <option value="yearly">वार्षिक (%)</option>
+        </select>
+      </label>
+      <label>ब्याजदर (%)<input type="number" id="customRate" inputmode="decimal" oninput="calculateSimpleInterest()"></label>
+      <label>समय (महिना)<input type="number" id="timeMonths" inputmode="decimal" oninput="calculateSimpleInterest()"></label>
+    </fieldset>
+    <div class="result-line">कुल ब्याज: <strong id="resInterestAmount">रु. ०</strong></div>
+    <div class="result-line">कुल तिर्नुपर्ने: <strong id="resTotalPayable">रु. ०</strong></div>
+  </div>
+</section>
