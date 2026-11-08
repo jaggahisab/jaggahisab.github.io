@@ -91,5 +91,7 @@
     </fieldset>
     <div class="result-line">कुल ब्याज: <strong id="resInterestAmount">रु. ०</strong></div>
     <div class="result-line">कुल तिर्नुपर्ने: <strong id="resTotalPayable">रु. ०</strong></div>
-  </div>
+  </div> {%- if page.show_malpot -%}
+<button role="tab" data-tab="malpot" aria-selected="false" aria-controls="panel-malpot" id="tab-malpot">मालपोत</button>
+{%- endif -%}
 </section>
