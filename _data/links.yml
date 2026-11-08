@@ -1,0 +1,16 @@
+kattha-to-aana:
+  siblings:
+    - { url: /bigha-to-ropani/, label: "बिघा → रोपनी" }
+    - { url: /dhur-to-aana/,     label: "धुर → आना" }
+    - { url: /land-price-calculator-nepal/, label: "जग्गाको मूल्य क्यालकुलेटर" }
+
+bigha-to-ropani:
+  siblings:
+    - { url: /kattha-to-aana/,   label: "कट्ठा → आना" }
+    - { url: /dhur-to-aana/,     label: "धुर → आना" }
+    - { url: /malpot-dastur-calculator/, label: "मालपोत दस्तुर" }
+
+dhur-to-aana:
+  siblings:
+    - { url: /kattha-to-aana/,   label: "कट्ठा → आना" }
+    - { url: /bigha-to-ropani/,  label: "बिघा → रोपनी" }
