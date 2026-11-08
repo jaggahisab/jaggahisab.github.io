@@ -200,3 +200,38 @@ document.addEventListener('DOMContentLoaded', () => {
   updateOutputs('');
   calculateSimpleInterest();
 });
+/* ---------- Malpot Calculator ---------- */
+const MALPOT_RATES = {
+  metropolitan: 0.05,
+  sub_metropolitan: 0.04,
+  municipality: 0.04,
+  rural: 0.03,
+  other: 0.02
+};
+
+function calculateMalpot() {
+  const propertyValue = num('malpotPropertyValue');
+  const location = (document.getElementById('malpotLocation') || {}).value || 'metropolitan';
+  const isWomanBuyer = (document.getElementById('malpotWomanBuyer') || {}).checked;
+  const holdingOver5 = (document.getElementById('malpotHoldingOver5') || {}).checked;
+  const isHouse = (document.getElementById('malpotIsHouse') || {}).checked;
+
+  const baseRate = MALPOT_RATES[location] || 0.05;
+  const womanDiscount = isWomanBuyer ? 0.25 : 0;
+  const effectiveRegRate = baseRate * (1 - womanDiscount);
+  const registrationFee = propertyValue * effectiveRegRate;
+
+  let cgtRate;
+  if (isHouse) {
+    cgtRate = holdingOver5 ? 0.025 : 0.05;
+  } else {
+    cgtRate = holdingOver5 ? 0.075 : 0.10;
+  }
+  const capitalGainsTax = propertyValue * cgtRate;
+  const total = registrationFee + capitalGainsTax;
+
+  setText('resMalpotFee', money(registrationFee));
+  setText('resMalpotCGT', money(capitalGainsTax));
+  setText('resMalpotTotal', money(total));
+  setText('resMalpotRate', `${(effectiveRegRate * 100).toFixed(2)}%${isWomanBuyer ? ' (महिला २५% छुट लागू)' : ''}`);
+}
