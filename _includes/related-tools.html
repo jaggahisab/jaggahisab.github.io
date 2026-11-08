@@ -1,0 +1,11 @@
+{%- assign links = site.data.links[page.slug] -%}
+{%- if links -%}
+<section class="related">
+  <h2>सम्बन्धित क्यालकुलेटर</h2>
+  <ul>
+    {%- for l in links.siblings -%}
+    <li><a href="{{ l.url | relative_url }}">{{ l.label }}</a></li>
+    {%- endfor -%}
+  </ul>
+</section>
+{%- endif -%}
