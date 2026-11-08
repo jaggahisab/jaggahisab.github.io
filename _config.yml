@@ -1,0 +1,15 @@
+title: "जग्गा हिसाब"
+description: "नेपालको जग्गा नाप, मूल्य, मालपोत, लोन र सयकडा ब्याज क्यालकुलेटर"
+url: "https://jaggahisab.github.io"
+lang: ne
+author: "Jgga Hisab"
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+markdown: kramdown
+kramdown:
+  input: GFM
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
