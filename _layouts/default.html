@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+<head>
+  {% include head.html %}
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="{{ '/' | relative_url }}" class="brand">जग्गा हिसाब</a>
+      <nav class="site-nav">
+        <a href="{{ '/land-converter/' | relative_url }}">जग्गा रूपान्तरण</a>
+        <a href="{{ '/finance-calculators/' | relative_url }}">वित्तीय क्यालकुलेटर</a>
+        <a href="{{ '/guides/' | relative_url }}">गाइड</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+  {% include sticky-bar.html %}
+  <script src="{{ '/assets/js/converter-core.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/ui-shell.js' | relative_url }}" defer></script>
+</body>
+</html>
