@@ -278,3 +278,76 @@ body {
 .site-footer nav a:hover {
   color: var(--accent);
 }
+/* --- Malpot form fields --- */
+.field { display: block; margin: var(--sp-3) 0; }
+.field-label { display: block; font-weight: 600; font-size: 0.92rem; margin-bottom: var(--sp-1); }
+.field-label abbr { color: var(--c-accent); text-decoration: none; font-weight: 700; margin-left: 2px; }
+.field-help { display: block; color: var(--c-text-muted); font-size: 0.82rem; margin-top: var(--sp-1); line-height: 1.4; }
+
+/* --- Checkbox rows --- */
+.checkbox-row {
+  display: flex;
+  gap: var(--sp-2);
+  align-items: flex-start;
+  padding: var(--sp-3);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-input);
+  margin: var(--sp-2) 0;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.checkbox-row:hover { border-color: var(--c-primary); }
+.checkbox-row input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 20px; height: 20px;
+  margin-top: 2px;
+  accent-color: var(--c-primary);
+  cursor: pointer;
+}
+.checkbox-body { display: flex; flex-direction: column; gap: 2px; }
+.checkbox-body strong { font-size: 0.95rem; }
+.checkbox-body small { color: var(--c-text-muted); font-size: 0.82rem; line-height: 1.4; }
+
+/* Highlight the woman-discount option */
+.checkbox-row--highlight {
+  background: #FFF8E1;
+  border-color: #F0C36D;
+}
+.checkbox-row--highlight:hover { border-color: var(--c-accent); }
+
+/* --- Result total emphasis --- */
+.result-line--total {
+  border-top: 2px solid var(--c-border);
+  padding-top: var(--sp-3);
+  margin-top: var(--sp-2);
+  font-size: 1.05rem;
+}
+.result-line--total strong { color: var(--c-accent); font-size: 1.15rem; }
+
+/* --- Inline disclaimer (inside panels) --- */
+.disclaimer--inline {
+  background: #FFF4E5;
+  border: 1px solid #F0C36D;
+  border-left: 4px solid var(--c-accent);
+  padding: var(--sp-3);
+  border-radius: var(--radius-input);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin: var(--sp-2) 0 var(--sp-3);
+}
+.disclaimer--inline strong { color: var(--c-accent); }
+
+/* --- Secondary button --- */
+.btn-secondary {
+  background: var(--c-surface);
+  color: var(--c-primary);
+  border: 1px solid var(--c-primary);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-input);
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin: var(--sp-1) 0;
+}
+.btn-secondary:hover { background: var(--c-surface-alt); }
