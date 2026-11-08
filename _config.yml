@@ -13,3 +13,8 @@ exclude:
   - README.md
   - Gemfile
   - Gemfile.lock
+  defaults:
+  - scope: { path: "" }
+    values: { show_malpot: false }
+  - scope: { path: "malpot-dastur-calculator" }
+    values: { show_malpot: true }
