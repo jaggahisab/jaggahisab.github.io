@@ -1,0 +1,34 @@
+---
+layout: default
+---
+<article class="spoke">
+  <header class="spoke-head">
+    <nav class="breadcrumb">
+      <a href="{{ '/' | relative_url }}">गृहपृष्ठ</a> ›
+      <a href="{{ page.category_hub | relative_url }}">{{ page.category_label }}</a> ›
+      <span>{{ page.title }}</span>
+    </nav>
+    <h1>{{ page.h1 | default: page.title }}</h1>
+    {%- if page.intro -%}<p class="spoke-intro">{{ page.intro }}</p>{%- endif -%}
+  </header>
+
+  {% include converter.html %}
+
+  {%- if content != "" -%}
+  <div class="editorial">{{ content }}</div>
+  {%- endif -%}
+
+  {%- if page.faq -%}
+  <section class="faq">
+    <h2>बारम्बार सोधिने प्रश्नहरू</h2>
+    {%- for f in page.faq -%}
+    <details class="faq-item">
+      <summary>{{ f.q }}</summary>
+      <p>{{ f.a }}</p>
+    </details>
+    {%- endfor -%}
+  </section>
+  {%- endif -%}
+
+  {% include related-tools.html %}
+</article>
