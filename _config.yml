@@ -3,6 +3,7 @@ description: "नेपालको जग्गा नाप, मूल्य, 
 url: "https://jaggahisab.github.io"
 lang: ne
 author: "Jgga Hisab"
+encoding: utf-8
 plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
@@ -13,8 +14,13 @@ exclude:
   - README.md
   - Gemfile
   - Gemfile.lock
-  defaults:
-  - scope: { path: "" }
-    values: { show_malpot: false }
-  - scope: { path: "malpot-dastur-calculator" }
-    values: { show_malpot: true }
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      show_malpot: false
+  - scope:
+      path: "malpot-dastur-calculator"
+    values:
+      show_malpot: true
